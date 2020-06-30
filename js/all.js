@@ -7,7 +7,7 @@ let obj = {
         const vm = this;
         const url = `https://course-ec-api.hexschool.io/api/${vm.data.uuid}/ec/products`; //Frontend 前台 - Product list. 取得所有商品列表
         axios.get(url)
-            .then(function (response) {
+            .then(function (response) { //simple call
                 vm.data.products = response.data.data;
                 vm.render();
             })
@@ -20,12 +20,13 @@ let obj = {
         const title = document.querySelector('.category-title');
         const products = this.data.products;
         let string = '';
-        console.log(products[0]);
         products.forEach( item => {
             string += 
             `<li class="card">
                 <a href="#">
-                    <div class="card-img" style="background-image: url(${ item.imageUrl[0] })"></div>
+                    <div class="card-img" style="background-image: url(${ item.imageUrl[0] })">
+                        <button class="add-btn">Add to Cart</button>
+                    </div>
                     <div class="card-text">
                         <h5 class="card-title">${ item.title }</h5>
                         <p class="sale-price">NT$${ item.price }<span class="sale-icon">sale</span></p>
